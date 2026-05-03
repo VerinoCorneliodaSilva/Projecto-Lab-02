@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Feed de notícias com resumos inteligentes de IA">
+  <title>Dashboard - NewsAI</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-logo">
+        📰 NewsAI
+      </div>
+      <div class="header-actions">
+        <button id="menu-toggle" class="btn btn-secondary btn-small" style="display: none;">☰ Menu</button>
+        <button id="theme-toggle" class="btn btn-secondary btn-small" title="Alternar tema">🌙</button>
+        <div class="user-menu">
+          <span class="user-name" id="user-name">Utilizador</span>
+          <button id="logout-btn" class="btn btn-secondary btn-small">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#dashboard" data-route="dashboard.html" class="nav-link active" data-page="dashboard">📰 Feed</a></li>
+          <li><a href="#preferences" data-route="preferences.html" class="nav-link" data-page="preferences">⚙️ Preferências</a></li>
+          <li><a href="#saved" data-route="saved.html" class="nav-link" data-page="saved">💾 Salvos</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Content Area -->
+    <div class="content">
+      <div id="dashboard-page">
+        <!-- Filters -->
+        <div class="filters">
+          <div class="filter-row">
+            <div class="filter-group">
+              <label>Categoria</label>
+              <div class="category-buttons" id="category-buttons">
+                <button class="category-btn active" data-category="general">Geral</button>
+                <button class="category-btn" data-category="business">Negócios</button>
+                <button class="category-btn" data-category="technology">Tecnologia</button>
+                <button class="category-btn" data-category="health">Saúde</button>
+                <button class="category-btn" data-category="science">Ciência</button>
+                <button class="category-btn" data-category="sports">Desporto</button>
+                <button class="category-btn" data-category="entertainment">Entretenimento</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <div class="filter-group">
+              <label for="country-select">País</label>
+              <select id="country-select">
+                <option value="pt">Portugal</option>
+                <option value="us">EUA</option>
+                <option value="gb">Reino Unido</option>
+                <option value="fr">França</option>
+                <option value="de">Alemanha</option>
+                <option value="es">Espanha</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loading-state" style="display: none; text-align: center; padding: 2rem;">
+          <div class="spinner" style="margin: 0 auto; margin-bottom: 1rem;"></div>
+          <p>Carregando notícias...</p>
+        </div>
+
+        <!-- Error state -->
+        <div id="error-state" style="display: none;">
+          <div class="alert alert-error"></div>
+          <button id="retry-btn" class="btn btn-primary">Tentar Novamente</button>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="articles-grid" id="articles-grid"></div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <button id="prev-btn" class="btn btn-secondary">← Anterior</button>
+          <span class="pagination-info">
+            <span id="current-page">1</span> / <span id="total-pages">1</span>
+          </span>
+          <button id="next-btn" class="btn btn-secondary">Próxima →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Summary Modal -->
+  <div id="summary-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Resumo da Notícia</h2>
+        <button id="modal-close" class="modal-close">×</button>
+      </div>
+      <div id="summary-content">
+        <div style="text-align: center;">
+          <div class="spinner" style="margin: 0 auto;"></div>
+          <p>Gerando resumo com IA...</p>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+        <button id="modal-read-original" class="btn btn-primary" style="flex: 1;">Ler Artigo Original</button>
+        <button id="modal-close-btn" class="btn btn-secondary" style="flex: 1;">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
